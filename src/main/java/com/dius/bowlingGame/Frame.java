@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Frame {
     public static final int MAX_PIN_IN_FRAME = 10;
+    public static final int MAX_TRIES_IN_FRAME = 2;
+
     private List<Integer> knockedPins = new ArrayList<>();
     private int maxTries;
 
@@ -13,9 +15,6 @@ public class Frame {
     }
     public void roll(int pinCount) {
         this.knockedPins.add(pinCount);
-        if(this.hasStrike()){
-            this.knockedPins.add(0);
-        }
     }
 
     public int score(){
@@ -26,7 +25,7 @@ public class Frame {
         return totalScore;
     }
     public boolean hasStrike(){
-        return this.knockedPins.size() >= 1 && knockedPins.get(0) == MAX_PIN_IN_FRAME;
+        return this.knockedPins.size() == 1 && knockedPins.get(0) == MAX_PIN_IN_FRAME;
     }
     public boolean hasSpare(){
         return this.knockedPins.size() == 2 && (knockedPins.get(0) + knockedPins.get(1) == MAX_PIN_IN_FRAME) && knockedPins.get(0)!=  MAX_PIN_IN_FRAME;
@@ -42,7 +41,7 @@ public class Frame {
     }
 
     public boolean hasTriesFinished() {
-        return this.knockedPins.size() == maxTries;
+        return this.hasStrike()? true: this.knockedPins.size() == maxTries;
     }
 
 }

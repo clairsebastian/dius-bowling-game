@@ -66,4 +66,24 @@ public class MatchTest {
         match.roll(0);
         assertEquals(20, match.score());
     }
+
+    @Test
+    public void testGameFor10Strikes(){
+        Match match = new Match();
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+        match.roll(10);
+
+        match.roll(10);
+        match.roll(10);
+        assertEquals(300, match.score());
+    }
 }
