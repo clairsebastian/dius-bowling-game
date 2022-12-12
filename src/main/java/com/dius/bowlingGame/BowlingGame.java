@@ -10,9 +10,16 @@ public class BowlingGame {
         this.frames.add(new BowlingFrame());
     }
 
-    public void roll(int pinCount){}
+    public void roll(int pinCount){
+        BowlingFrame currentFrame = frames.get(frames.size() - 1);
+        currentFrame.roll(pinCount);
+    }
 
     public int score() {
-        return 0;
+        int totalScore = 0;
+        for (int i = 0; i < this.frames.size(); i++) {
+            totalScore = totalScore + this.frames.get(i).score();
+        }
+        return totalScore;
     }
 }
