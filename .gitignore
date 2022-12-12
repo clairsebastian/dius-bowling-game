@@ -1,0 +1,5 @@
+# Ignore build folders
+.idea
+build/**
+gradle/**
+.gradle/**

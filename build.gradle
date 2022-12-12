@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group = 'com.dius'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+
+jar {
+    archiveBaseName = 'bowling-game'
+    version =  null
+    manifest {
+        attributes 'Main-Class' : 'com.dius.bowlingGame.Main'
+    }
+    // To create a single jar with all dependencies.
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+    test {
+        java.srcDir 'src/test/java'
+    }
+}
+
+dependencies {
+    testImplementation group: 'junit', name: 'junit', version: '4.+'
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
