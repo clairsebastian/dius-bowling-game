@@ -3,12 +3,12 @@ package com.dius.bowlingGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BowlingFrame {
+public class Frame {
     public static final int MAX_PIN_IN_FRAME = 10;
     private List<Integer> knockedPins = new ArrayList<>();
     private int maxTries;
 
-    public BowlingFrame(int maxTries){
+    public Frame(int maxTries){
         this.maxTries = maxTries;
     }
     public void roll(int pinCount) {

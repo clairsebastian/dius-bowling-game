@@ -3,22 +3,22 @@ package com.dius.bowlingGame;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BowlingGame {
+public class Match {
     public static final int FRAMES_IN_A_MATCH = 10;
     public static final int ONE_BALL = 1;
     public static final int TWO_BALL = 2;
     public static final int MAX_TRIES_IN_FRAME = 2;
-    private List<BowlingFrame> frames = new ArrayList<>();
+    private List<Frame> frames = new ArrayList<>();
 
-    public BowlingGame(){
-        this.frames.add(new BowlingFrame(MAX_TRIES_IN_FRAME));
+    public Match(){
+        this.frames.add(new Frame(MAX_TRIES_IN_FRAME));
     }
 
     public void roll(int pinCount){
-        BowlingFrame currentFrame = frames.get(frames.size() - 1);
+        Frame currentFrame = frames.get(frames.size() - 1);
         currentFrame.roll(pinCount);
         if(currentFrame.hasTriesFinished() && frames.size() < FRAMES_IN_A_MATCH){
-            frames.add(new BowlingFrame(MAX_TRIES_IN_FRAME));
+            frames.add(new Frame(MAX_TRIES_IN_FRAME));
         }
     }
 
@@ -26,14 +26,14 @@ public class BowlingGame {
         int totalScore=0;
 
         for (int i=0; i < this.frames.size(); i++) {
-            BowlingFrame bowlingFrame = this.frames.get(i);
-            totalScore =  totalScore + bowlingFrame.score();
+            Frame frame = this.frames.get(i);
+            totalScore =  totalScore + frame.score();
 
-            if(bowlingFrame.hasSpare() && this.frames.size() > i+1){
+            if(frame.hasSpare() && this.frames.size() > i+1){
                 totalScore = totalScore + this.frames.get(i+1).getScoreForBowls(ONE_BALL);
             }
 
-            if(bowlingFrame.hasStrike() && this.frames.size() > i+1){
+            if(frame.hasStrike() && this.frames.size() > i+1){
                 totalScore = totalScore + this.frames.get(i+1).getScoreForBowls(TWO_BALL);
             }
         }
