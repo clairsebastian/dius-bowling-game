@@ -38,12 +38,32 @@ public class BowlingGameTest {
         assertEquals(10, b.score());
 
     }
-
     @Test
     public void testGameForOneFrameWithSpare(){
         BowlingGame b = new BowlingGame();
         b.roll(4);
         b.roll(6);
         assertEquals(10, b.score());
+    }
+
+    @Test
+    public void testGameForTwoFrameWithStrike(){
+        BowlingGame b = new BowlingGame();
+        b.roll(10);
+        assertEquals(10, b.score());
+        b.roll(5);
+        b.roll(4);
+        assertEquals(28, b.score());
+
+    }
+    @Test
+    public void testGameForTwoFrameWithSpare(){
+        BowlingGame b = new BowlingGame();
+        b.roll(4);
+        b.roll(6);
+        assertEquals(10, b.score());
+        b.roll(5);
+        b.roll(0);
+        assertEquals(20, b.score());
     }
 }
