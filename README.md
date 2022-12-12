@@ -1,7 +1,7 @@
 # dius-bowling-game
 
 This is repsitory has a solution for the Bowling Game coding problem (https://github.com/DiUS/coding-tests/blob/master/dius_bowling.md).
-This solution solves the first part of the problem.
+This solution solves the first part of the problem and rules for the last frame.
 
 
 # Pre-requisites
